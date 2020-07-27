@@ -1,0 +1,210 @@
+<!--Basically, this is a puzzle, and as we know that every puzzle has a specific pattern 
+	to decode it, the same is here.
+
+	In this puzzle, we will get different results for " who will survive" question, 
+	for the different number of soldiers chosen.
+  1)
+ 	So after doing some research I found that whenever the number of soldiers is equal
+ 	to a number which is a perfect power of 2, the result will be [OR] the survivor will be
+ 	the first soldier(or we can say the soldier which is having the sword for the First).
+
+ 	for example, if no. of soldiers is 2,4,8,16,32,64,128, etc i.e 2^n .The result will 
+ 	always be the first soldier i.e. the soldier having the Sword for the first.
+ 2)
+ 	But what if the number of Soldiers is not equal to a number which is a perfect power 
+ 	of 2 for Example 100, 50, 78, 230, etc. 
+	The great thing is that it's also having a pattern, for explaining it I have to take
+	an example. And in the example, No. of soldiers is 100 and the sword position is 1 
+	i.e. its in the hand of soldier which is in position 1.
+
+	As 100 is not a perfect power of 2, So now we will find the largest number 
+	(which is a perfect  Power of 2 [i.e. 2^n] ) but it is less than 100. 
+	And that number is 64 i.e. 2^6.
+
+	Now the remaining soldiers will be 100 -64 = 36.
+	now assigning these values into the variables, 
+
+	let A= the position of a soldier who will survive at last, in the 100 soldiers
+    and L=36(the remaining ones)
+
+	Now the pattern says that:) A = 1+2L will give the desired output.
+
+	After putting value we get A= 1+ (2*36) ; 
+	A=73, which is the Answer,
+	------------So the soldier in the 73rd position will survive.-----------
+
+	***********And the same is true for every number which is not a perfect power of 2.************
+ -->
+<!-- ================================================================================================-->
+
+	<!-- But this  PATTERN WORKS FINE ****[ONLY WHEN]**** the sword is in 1st position but if we
+	 want the sword to be in ****[ANY POSITION]**** we have to follow a way consisting of an array.
+	 And by manupulating that array we can get the desired result of ****[Who will survive 
+	 at last]**** question.
+	
+	for further detail about this array manupulation see the ****[Section-4]**** in the below code. 
+   -->
+
+
+
+   <!-- -----------Let me Run you through my code------------------->
+
+	 <!--
+	 section 1:-This is the CSS Style.
+
+	 section 2:-This is the HTML section.
+
+	 section 3:-This is the Internal JavaScript section which Provides us the result.It is having 
+	 			various If Else conditon that will check which Soldier will Survive at last.
+
+	 section 4:-This portion of Code don't use the pattern to find the result , BECAUSE PATTERN 
+	 			FAILS when Sword is not in the 1st position and is in some other Position.
+	 			This portion uses Array MANUPULATION to get the desired result.
+     -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Adding Favicon in Title -->
+	<link rel='icon' href='favicon.ico' type='image/x-icon'>
+	<title>Assignment 8</title>
+	<!-- Adding internal Style-Sheet in the File -->
+
+<!-- ==========================================SECTION-1================================================= -->
+
+		<style type="text/css">
+		/* Arranging CSS selectors in alphabetical order makes easy finding the right selector */
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			body{
+				text-align: center;
+				font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+				background-color: #76ead7;
+				color: #006a71;
+				margin: 2% 10%;
+			}
+			button{
+				color: white;
+				background: transparent;
+				transition: all .5s;
+				width: 10rem;
+				padding: 10px 10px;
+				margin: 0px 10px 20px;
+				border: .2em solid white;
+				border-radius: 15%;
+			}
+			button:hover{
+				color: #393e46;
+				border-color: #393e46;
+			}
+			button:focus{
+				outline:none;
+			}
+			hr{
+				margin: auto;
+				border: none;
+				width: 10%;
+				height: 5px;
+				border-top: dotted 5px #006a71;
+			}
+			.input{
+				font-size: 1rem;
+				font-weight: 600;
+				text-align: center;
+				color: #006a71;
+				background-color: white;
+				border: 2px solid #006a71;
+				border-radius: 10%;
+				margin: 30px 10px 40px;
+				padding: 10px 5px;
+			}
+		</style>
+</head>
+<body>
+<!-- ==========================================SECTION-2================================================= -->
+
+	<h1>Let's Play Sword and Soldier Game <strong>!!!</strong></h1><hr><br>
+		<h3>Basically what we'll do is:</h3>
+		<br>
+		<h4>Suppose there are 100 Soldiers stand in a circle in an order 1 to 100 & No.1 has a sword. So,no.1 soldiers kill the next soldier (i.e. No.2) and give the sword to the next soldier (i.e. No.3). All the soldier do the<br> same until only 1 soldier survive who is not killed by anyone.<br><br>And I will tell you the position of soldier which is not killed !</h4>
+		
+		<span>
+			<input class="input" type="number" id="no_soldier" placeholder="Enter No. of Soldiers">
+			<input class="input" type="number" id="pos_sword" placeholder="Enter Sword Position">
+		</span>
+		<div>
+			<h4 style="border-bottom: 3px solid black;">Please REFRESH after each Result !!!</h4><br>
+			<button type="input" onclick="Survived()">Who Survived</button>
+		</div>
+		<h3 id="result" style="color:black;"></h3> <!-- Here Dynamic result will be shown using Javascript -->
+	
+</body>
+<!-- ==========================================SECTION-3================================================= -->
+
+<script type = "text/javascript">
+
+	function Powerof2(n) {						//This function will check whether the passed number is
+		return n && (n & (n - 1)) === 0;		//Perfect power of 2 or not.If not than retunrs False.
+	}
+
+	function Returns_power_of_2(m) {			//This function will return Perfect
+		for (var n = 0; n < 20; n++) {			// power of 2 number which is smaller 
+			if (Math.pow(2, n) < m) {			//than the number which is passed	
+				var sum = Math.pow(2, n);		// to the function as parameter i.e. No. of SOLDIERS.
+			} else { break; }
+		}
+		return sum;
+	}
+
+	function Survived() {
+		var soldier = parseInt(document.getElementById('no_soldier').value);  //Passing values of input 
+		var sword = parseInt(document.getElementById('pos_sword').value);	 //into the variables.
+
+		if ((sword <= soldier && sword != 0) && soldier != 0) {  //This if condition validates that the
+			var result = Powerof2(soldier);						//sword or soldier input cant be zero
+
+			if (result) {		//If result true than pass inside otherwise go to else condition
+				document.getElementById('result').innerHTML = "The position of Soldier                         who survived at last is in position " + sword;
+
+			} else { // This else block will use the Pattern and will calculate the desired result.
+				var a = Returns_power_of_2(soldier);
+				a = soldier - a;
+				a = 1 + (2 * a);
+
+			      if (sword == 1) { 	// here sword position is 1 so its simple 
+										//and result will be according to Pattern
+				document.getElementById('result').innerHTML = "The position of Soldier                           who survived at last is in position " + a;
+			}
+// ========================================= Section-4 START =====================================================
+			//This else block will do Array Manupulation to get the desired results. 
+				 else {
+					var circle = new Array();  //Creating an Array
+
+					for (var i = sword; i <= soldier; i++) {
+						circle.push(i);					//filling values in array from the Sword Position
+					}
+					for (var j = 1; j < sword; j++) {	//filling values in array that are before the sword
+						circle.push(j);					//Position
+					}
+					var k = 0;
+					while (circle.length > 1) { // loop until only 1 exists
+						circle.push(circle[k]); // move 1st value to the end of array
+						circle.shift(); // removing 1st value from the starting position(means soldier handed the sword to next living soldier)
+						circle.shift(); // deleting the new 1st value (means soldier is killed)
+
+					}
+			//After execution of while loop only one value will remain in the array.
+			//And that value is the position of soldier who survives at last.
+					document.getElementById('result').innerHTML = "The position of Soldier                      who survived at last is in position " + circle[0];
+				}
+// ========================================= SECTION-4 END ====================================================== 			
+			}
+		} else { //This is an error Message.
+			document.getElementById('result').innerHTML = "Please enter Proper Values !!!";
+		}
+	}
+</script>
+</html>
