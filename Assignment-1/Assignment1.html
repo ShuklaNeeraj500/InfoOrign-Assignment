@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<!-- Adding Favicon in Title -->
+
+		<link rel='icon' href='favicon.ico' type='image/x-icon'>
+		<title>Assignment 1 </title>
+
+		<!-- Adding internal Style-Sheet in the File -->
+
+		<style type="text/css">
+
+		/* Arranging CSS selectors in alphabetical order makes easy finding the right selector */
+
+		body{
+			background-color: #FF6F91;
+			text-align: center;
+		}
+		button{
+			width: 10rem;
+			padding: 10px 10px;
+			margin: 0px 10px;
+			border: .1em solid white;
+			color: white;
+			background: transparent;
+			transition: all .3s;
+		}
+		button:hover{
+			color: #b9b8bf;
+			border-color: #b9b8bf;
+		}
+		button:focus{
+			outline-color: transparent;
+		}
+		.head{
+			color: white;
+			font-weight: 300;
+			font-family: Optima, sans-serif;
+			width: 50%;
+			margin: 100px auto;
+		}
+		h1.head{
+			font-size: 2.5rem;
+		}
+		h2.head{
+			font-size: 1.5rem;
+		}
+		
+		</style>
+	</head>
+	<body>
+		<h1 class="head">Below given are the three Buttons</h1>
+
+		<!-- Button's Section -->
+		<span>
+			<button type="button" onclick="ChangeColor('red' ,'btn1')"  id="btn1">RED</button>
+			<button type="button" onclick="ChangeColor('green','btn2')"  id="btn2">GREEN</button>
+			<button type="button" onclick="ChangeColor('yellow','btn3')"  id="btn3">YELLOW</button>
+		</span>
+
+		<h2 class="head"><em>...</em>But amazing thing is that when you click them, they change
+		 the color according to the text written over them.</h2>
+		
+		<!-- Adding Java-Script using Script Tag in the File -->
+
+		<script type="text/javascript">
+			function ChangeColor(color ,id)
+				{
+					document.getElementById(id).style.backgroundColor=color;
+				}
+		</script>
+	</body>
+</html>
+
+<!-- ========================================================================================================= -->
+
+<!-- Before I was using three functions inside Script tag, now with a SINGLE function 
+	 we are achiving the same results  -->

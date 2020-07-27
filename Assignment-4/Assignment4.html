@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- Adding Favicon in Title -->
+		<link rel='icon' href='favicon.ico' type='image/x-icon'>
+		<title>Assignment 4</title>
+
+		<!-- Adding internal Style-Sheet in the File -->
+		<style type="text/css">
+		/* Arranging CSS selectors in alphabetical order makes easy finding the right selector */
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			body{
+				text-align: center;
+				font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+				background-color: #e2979c;
+				color: #f7f5dd;
+				margin: 2% 10%;
+			}
+			#btn-rotate{
+				background-color: transparent;
+			}
+			button{
+				font-weight: 700;
+				color: black;
+				border-radius: 10%;
+				transition: all .3s;
+				width: 10rem;
+				padding: 10px 10px;
+				margin: 0px 10px 20px;
+				border: .1em solid #f3f3f382;
+			}
+			button:hover{
+				color: #fff;
+				border-color: #fff;
+			}
+			button:focus{
+				outline-color: transparent;
+			}
+			hr{
+				margin: auto;
+				border: none;
+				width: 10%;
+				height: 5px;
+				border-top: dotted 5px #f7f5dd;
+			}
+			.input{
+				font-size: 1rem;
+				font-weight: 600;
+				text-align: center;
+				color: #006a71;
+				background-color: transparent;
+				border: 2px solid #006a71;
+				margin: 30px 10px 40px;
+				padding: 5px 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Below three buttons are given having color<br> RED GREEN YELLOW</h1><hr><br><br>
+		<h3>When you click any button, the background color of button changes to the color written on button</h3><br><br>
+		<!-- button section -->
+		<span>
+			<button type="input" id="btn-red"  style="background-color: red;" onclick="Back_color('red')">RED</button>
+			<button type="input" id="btn-green" style="background-color: green;" onclick="Back_color('green')">GREEN</button>
+			<button type="input" id="btn-yellow" style="background-color:yellow;" onclick="Back_color('yellow')">YELLOW</button>
+		</span><br>
+
+		<h3>Click the Rotate button below and see the changes<strong>!!!</strong></h3><br>
+	
+		<div>
+			<button type="input" id="btn-rotate" onclick="Rotate()">ROTATE</button>
+		</div><hr>
+
+		<script type="text/javascript">
+
+		// Below function will change the color of button according to the color written over them, Whenever clicked.
+		function Back_color(a){
+				if(a == 'red'){
+					document.getElementById('btn-red').style.backgroundColor="red";
+				}
+				else if(a=='green'){
+					document.getElementById('btn-green').style.backgroundColor="green";
+				}
+				else{
+					document.getElementById('btn-yellow').style.backgroundColor="yellow";
+				}
+				}
+		
+		// Below function will make the color of buttons rotate in clock-wise direction whenever we click the rotate button.
+		function Rotate(){
+		var m = document.getElementById("btn-red");
+		var c = m.style.backgroundColor; //fetching the Background color of id-btn-red in variable c
+
+		var n = document.getElementById("btn-green");
+		var d = n.style.backgroundColor; //fetching the Background color of id-btn-green in variable d
+
+		var o = document.getElementById("btn-yellow");
+		var e = o.style.backgroundColor; //fetching the Background color of id-btn-yellow in variable e
+
+		//Setting the background-color such that it will rotate in clock-wise direction
+		document.getElementById('btn-red').style.backgroundColor=e;
+		document.getElementById('btn-green').style.backgroundColor=c;
+		document.getElementById('btn-yellow').style.backgroundColor=d;
+			}
+
+		</script>
+		
+	</body>
+</html>
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<!-- Used Javascript and Css  -->

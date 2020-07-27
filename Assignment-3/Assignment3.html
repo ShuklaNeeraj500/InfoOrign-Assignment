@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Adding Favicon in Title -->
+<link rel='icon' href='favicon.ico' type='image/x-icon'>
+<title>Assignment 3</title>
+<!-- Adding internal Style-Sheet in the File -->
+<style type="text/css">
+	/* Arranging CSS selectors in alphabetical order makes easy finding the right selector */
+	*{
+		margin: 0px;
+		padding: 0px;
+	}
+	body{
+		text-align: center;
+		font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+		background-color: #d1eaa3;
+		color: #006a71;
+		margin: 2% 10%;
+	}
+	button{
+		color: #006a71;
+		background: transparent;
+		transition: .4s;
+		width: 8rem;
+		padding: 10px 10px;
+		margin: 15px auto;
+		border: .2em solid #006a71;
+	}
+	button:hover{
+		color: #ffffff;
+		border-color: #ffffff;
+		font-weight: bold;
+		font-size: .9rem;
+	}
+	button:focus{
+		outline-color: transparent;
+	}
+	hr{
+		margin: auto;
+		border: none;
+		width: 10%;
+		height: 5px;
+		border-top: dotted 5px #006a71;
+	}
+	.input{
+		font-size: 1rem;
+		font-weight: 600;
+		text-align: center;
+		color: #006a71;
+		background-color: transparent;
+		border: 2px solid #006a71;
+		margin: 30px 10px 40px;
+		padding: 5px 5px;
+	}
+	li{list-style: none;
+		font-size: 1rem;
+		font-weight: bold;
+	}
+		
+</style>
+</head>
+<body>
+	<h1>Let's check the Validation <strong>!!!</strong></h1><hr><br><br>
+	<h3>The conditions for validation are given below</h3>
+	<div>
+		<ul>
+			<li>MIN < MAX</li>
+			<li>MUL < MAX </li>
+			<li>MUL <= MIN </li>
+			<li>MIN and MUL should be the factor of MAX.</li>
+		</ul>
+	</div><br>
+	
+	<span>
+		<input class="input" type="number" id="min" placeholder="MIN-VALUE">
+		<input class="input" type="number" id="max" placeholder="MAX-VLUE">
+		<input class="input" type="number" id="mul" placeholder="MUL-VALUE">
+	</span>
+	<div>
+		<h4>Please REFRESH after each Validation</h4>
+		<button type="input" onclick="Validation()">Validate</button>
+	</div>
+	<h3 id="result" style="color:#006a71;"></h3>
+		
+		
+	<!-- Adding Java-Script using Script Tag in the File -->
+	<script  type="text/javascript">
+	function Validation(){
+	// Taking the value of input-boxes into variables
+	var min_value = parseFloat(document.getElementById("min").value);
+	var max_value = parseFloat(document.getElementById("max").value);
+	var mul_value = parseFloat(document.getElementById("mul").value);
+
+	// Using if-else Statements, We can validate the required conditions as given below
+
+// --------------------------------------------------------------------------------------------------------------
+
+	// Validating that everything is perfect
+	if(min_value<max_value && min_value>=mul_value && mul_value<max_value){
+		if(((max_value%min_value)==0) && ((max_value%mul_value)==0 )){
+		document.getElementById("result").innerHTML = "Evertything is perfect ...!!!<br>(Please Refresh after each validation)"
+		}
+		else if((max_value%min_value)!=0){
+		document.getElementById("min").style.borderColor = "red";
+		}
+		else{
+			document.getElementById("mul").style.borderColor = "red";
+		}
+	}
+	// Validating that all inputs should not be zero
+	else if(min_value==0 && max_value==0 && mul_value==0){
+		document.getElementById("result").innerHTML = "Wrong Please fill value in each input.<br>(Please Refresh after each validation)";
+	}
+	// Validation for max-box having error
+	else if(max_value<mul_value || max_value<min_value){
+		document.getElementById("max").style.borderColor = "red";
+		document.getElementById("result").innerHTML = "Max-value should be greater than both the Min and Mul value.<br>(Please Refresh after each validation)";
+	}
+	// Validation for min-box having error
+	else if(min_value>=max_value){
+		document.getElementById("min").style.borderColor = "red";
+		
+
+	}
+	// Validation for mul-box having error that its not the factor of max-box and its greater than min-box
+	else if( (mul_value>min_value)&&((max_value%mul_value)!=0) ) {
+		document.getElementById("mul").style.borderColor = "red";
+		document.getElementById("max").style.borderColor = "red";
+	}
+	
+	// Validation for mul-box having error
+	else if(mul_value>min_value){
+		document.getElementById("mul").style.borderColor = "red";
+	}
+	//Validation that both the values of min-box and mul-box are the factor of max-box value
+	else if(((max_value%min_value)!=0) && ((max_value%mul_value)!=0)){
+		document.getElementById("max").style.borderColor = "red";
+	
+	}
+	// Validation for min-box having error that its not the factor of max-box
+	else if((max_value%min_value)!=0) {
+		document.getElementById("min").style.borderColor = "red";
+	}
+	
+	//It will cover rest cases
+	else{
+		document.getElementById("mul").style.borderColor = "red";
+		
+	}
+	}
+			
+	</script>
+</body>
+</html>
+
+<!-- ========================================================================================================= -->
+

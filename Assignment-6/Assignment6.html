@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Adding Favicon in Title -->
+<link rel='icon' href='favicon.ico' type='image/x-icon'>
+<title>Assignment 6 </title>
+<!-- Adding internal Style-Sheet in the File -->
+	<style type="text/css">
+	/* Arranging CSS selectors in alphabetical order makes easy finding the right selector */
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		body{
+			margin:5% auto 5%;
+			width: 60%;
+			text-align: center;
+			font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			background-color: #42240c;
+			color: #f7f5dd;
+			
+		}
+		button{
+			color: white;
+			background: transparent;
+			transition: all .2s;
+			width: 10rem;
+			padding: 10px 10px;
+			margin: 0px 10px 20px;
+			border: .2em solid white;
+			border-radius: 15%;
+		}
+		button:hover{
+			color: #b9b8bf;
+			border-color: #b9b8bf;
+		}
+		button:focus{
+			outline:none;
+		}
+		hr{
+			margin: auto;
+			border: none;
+			width: 10%;
+			height: 5px;
+			border-top: dotted 5px #f7f5dd;
+		}
+	</style>
+</head>
+<body>
+	<h1 class="head">Below given are the three Buttons</h1><br>
+	<h3>When you click any of the three buttons the number written over them increrases by ONE !!!</h3><br><hr><br>
+	<!-- Button's Section -->
+	<span>
+		<button type="button" onclick="Inc1(); Clicked('btn-1')"  id="btn-1">0</button>
+		<button type="button" onclick="Inc2(); Clicked('btn-2')"  id="btn-2">0</button>
+		<button type="button" onclick="Inc3(); Clicked('btn-3')"  id="btn-3">0</button>
+	</span><br><br>
+	<div>
+		<button type="button" onclick="Validate()" id="validate">Validate</button>
+	</div>
+	<h3>When you click Validate button actions take place<br>according to the below two conditions</h3>
+	<br><hr><br>
+	<h4 id="1">1.The value of unclicked buttons (among three buttons) should get increased
+	by 1.</h4>
+	<h4 id="2">2.If all the three buttons are clicked, the value of oldest (first) clicked button
+	(among three buttons) should get increased by 1.</h4>
+
+
+		<script  type="text/javascript">
+			// Declaring global variables so that we can use them in different functions
+			var click_status1 =false;
+			var click_status2 = false;
+			var click_status3 = false;
+			var btn_clicked_first; //This variable will store id of btn which is clicked first
+
+		// we are using noop function because we want to call the Clicked function only once
+			function noop() {};
+
+		//This function checks which button was clicked first, and store its value for further use.
+			function Clicked(data) {
+				Clicked = noop; // swaping the functions , so next time the noop function will be called.
+				btn_clicked_first=data;
+				}
+
+		// The below three functions will increment the value of buttons by one
+			function Inc1(){
+						var btn_inc = document.getElementById('btn-1').innerHTML;
+						var inc = ++btn_inc;
+						document.getElementById('btn-1').innerHTML=inc;
+						click_status1 = true;
+			}
+			function Inc2(){
+						var btn_inc = document.getElementById('btn-2').innerHTML;
+						var inc = ++btn_inc;
+						document.getElementById('btn-2').innerHTML=inc;
+						click_status2 = true;
+			}
+			function Inc3(){
+						var btn_inc = document.getElementById('btn-3').innerHTML;
+						var inc = ++btn_inc;
+						document.getElementById('btn-3').innerHTML=inc;
+						click_status3 = true;
+			}
+
+		// The below function will validate the given two conditions of Validate buttons
+			function Validate(){
+
+		//This if block will validate the 1st conditon of validate button
+			if(click_status1 == false && click_status2 == false && click_status3 == false )
+				{
+					Inc1();
+					click_status1 = false;
+					Inc2();
+					click_status2 = false;
+					Inc3();
+					click_status3 = false;
+				}
+			else if(click_status1 == false && click_status2 == false  )
+				{
+					Inc1();
+					click_status1 = false;
+					Inc2();
+					click_status2 = false;
+				}
+			else if(click_status2 == false && click_status3 == false )
+				{
+					Inc2();
+					click_status2 = false;
+					Inc3();
+					click_status3 = false;
+				}
+			else if(click_status1 == false &&  click_status3 == false )
+				{
+					Inc1();
+					click_status1 = false;
+					Inc3();
+					click_status3 = false;
+				}
+			else if(click_status1 == false )
+				{
+					Inc1();
+					click_status1 = false;
+					
+				}
+			else if( click_status2 == false  )
+				{
+					Inc2();
+					click_status2 = false;
+				}
+			else if(click_status3 == false )
+				{
+					Inc3();
+					click_status3 = false;
+				}
+		//This else block will validate the 2nd conditon of validate button
+			else{
+
+				if(btn_clicked_first == 'btn-1'){
+					Inc1();
+					click_status1 = false;
+				}
+				else if(btn_clicked_first == 'btn-2'){
+					Inc2();
+					click_status2 = false;
+				}
+				else{
+					Inc3();
+					click_status3 = false;
+				}
+				
+				}
+			
+			}
+		</script>
+	</body>
+</html>

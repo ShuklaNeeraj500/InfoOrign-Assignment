@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- Adding Favicon in Title -->
+      <link rel='icon' href='favicon.ico' type='image/x-icon'>
+      <title>Assignment 7 </title>
+      <!-- Adding internal Style-Sheet in the File -->
+      <style type="text/css">
+	/* Arranging CSS selectors in alphabetical order makes easy finding the right selector */
+
+	* {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	body {
+		margin: 2rem auto;
+		width: 60%;
+		text-align: center;
+		font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+		background-color: #f5f1da;
+		color: #42240c;
+	}
+
+	hr {
+		margin: auto;
+		border: none;
+		width: 10%;
+		height: 5px;
+		border-top: dotted 5px #42240c;
+	}
+
+	.main {
+		height: 400px;
+		position: absolute;
+	}
+
+/* Adding media query to make classes ( rect, circle, tri )	to be removed at screen size below 910px  */
+
+@media only screen and (min-width: 910px) {
+	.rect {
+		left: 15%;
+		position: relative;
+		width: 40rem;
+		height: 21rem;
+		background: red;
+	}
+	.circle {
+		position: relative;
+		top: -22.5rem;
+		left: 15%;
+		margin: 3rem auto;
+		width: 18rem;
+		height: 18rem;
+		background: yellow;
+		border-radius: 50%;
+	}
+	.tri {
+		position: relative;
+		top: -44rem;
+		left: 20rem;
+		width: 0;
+		height: 2rem;
+		border-left: 100px solid transparent;
+		border-right: 100px solid transparent;
+		border-bottom: 180px solid green;
+	}
+}
+/* Adding media query to make classes ( media-"circle, triangle, tri" )	to be removed at screen size above 910px  */
+
+@media only screen and (max-width: 910px) {
+	.media-circle {
+		position: relative;
+		left: auto;
+		top: 2rem;
+		width: 25rem;
+		height: 25rem;
+		background: red;
+		border-radius: 50%
+	}
+	.media-triangle {
+		position: relative;
+		left: 3.5rem;
+		top: -21.5rem;
+		width: 0;
+		height: 0;
+		border-left: 9rem solid transparent;
+		border-right: 9rem solid transparent;
+		border-bottom: 18rem solid yellow;
+	}
+	.media-tri {
+		position: relative;
+		left: 8.3rem;
+		top: -33rem;
+		width: 0;
+		height: 0;
+		border-left: 4.5rem solid transparent;
+		border-right: 4.5rem solid transparent;
+		border-bottom: 9rem solid green;
+	}
+}
+
+		</style>
+	</head>
+<body>
+
+   <h2 class="head">Below given are three Shapes<br> Rectangle, Circle & Triangle !!!</h2>
+   <br>
+   <h3>When you decrease the browser resolution by 910-px the Rectangle changes
+      to Circle and Circle changes to Triangle!!! 
+   </h3><br><hr><br>
+   
+   <div class="main">
+      <div id="shape1" class="rect"></div>
+      <div id="shape2" class="circle"></div>
+      <div id="shape3" class="tri">	</div>
+   </div>
+   <script>
+      function Change_shape(x) {
+      	if (x.matches)  // If media query matches
+      	{
+      	var active1 = document.getElementById("shape1"); //getting reference of specific id into variable
+      	var active2 = document.getElementById("shape2");
+      	var active3 = document.getElementById("shape3");
+      		
+  		active1.classList.add("media-circle");	// Adding classes dynamically to element at screen-size below 910px
+  		active2.classList.add("media-triangle");
+  		active3.classList.add("media-tri");
+      	} else {}
+      	}
+      	var x = window.matchMedia("(max-width: 910px)") // setting media-query in javascript at 910px
+      	Change_shape(x) // Call listener function at run time
+      	x.addListener(Change_shape) // Attach listener function on state changes
+      	
+   </script>
+</body>
+</html>

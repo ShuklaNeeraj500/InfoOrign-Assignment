@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- Adding Favicon in Title -->
+		<link rel='icon' href='favicon.ico' type='image/x-icon'>
+		<title>Assignment 2</title>
+		<!-- Adding internal Style-Sheet in the File -->
+		<style type="text/css">
+		/* Arranging CSS selectors in alphabetical order makes easy finding the right selector */
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			body{
+				text-align: center;
+				font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+				background-color: #42240c;
+				color: #f7f5dd;
+				margin: 10%;
+			}
+			button{
+				color: white;
+				background: transparent;
+				transition: all .3s;
+				width: 10rem;
+				padding: 10px 10px;
+				margin: 0px 10px 20px;
+				border: .1em solid white;
+			}
+			button:hover{
+				color: #b9b8bf;
+				border-color: #b9b8bf;
+			}
+			button:focus{
+				outline-color: transparent;
+			}
+			.gap{
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+			hr{
+				margin: auto;
+				border: none;
+				width: 10%;
+				height: 5px;
+				border-top: dotted 5px #f7f5dd;
+			}
+			.input{
+				text-align: center;
+				color: white;
+				background-color: transparent;
+				border: 1px solid white;
+				margin: 0 10px 40px;
+				padding: 5px 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="gap">Below given is a Calculator that can perform Addition, Subtraction, Multiplication, Division & can find the Modulus(Remainder) <strong>!!!</strong></h1>
+		<hr>
+		<h3 class="gap">Enter any number in the given two text-boxes.</h3>
+		<!-- Input Field Section -->
+		<span>
+			<input class="input" type="number" id="num1" placeholder="Enter 1st number" required>
+			<input class="input" type="number" id="num2" placeholder="Enter 2nd number" required>
+		</span>
+		<h3 class="gap">Select any of the operations given below to perform on the above two numbers.</h3>
+		<!-- Button's Section -->
+		<span>
+			<button type="input" onclick="Operation('add')">ADD</button>
+			<button type="input" onclick="Operation('sub')">SUB</button>
+			<button type="input" onclick="Operation('mul')">MUL</button>
+			<button type="input" onclick="Operation('div')">DIV</button>
+			<button type="input" onclick="Operation('mod')">MOD</button>
+		</span>
+		<hr>
+		<!-- Adding Inline Style-Sheet -->
+		<h3 id="result" style="color:#ffa931;"></h3>
+		<!-- Adding Java-Script using Script Tag in the File -->
+		<script  type="text/javascript">
+			
+		function Operation(a){
+		var number_1 =parseInt(document.getElementById("num1").value);
+		var number_2 =parseInt(document.getElementById("num2").value);
+
+		// Using If-else loop so that a single function can perform all the Arithmetic-Operations
+		if(a=='add'){
+			var result = number_1 + number_2;
+				document.getElementById("result").innerHTML = "The Addition of "+ number_1 +" & "+number_2+" is : "+result;
+				}
+		else if( a=='sub'){
+					var result = number_1 - number_2;
+			document.getElementById("result").innerHTML = "The Substraction of "+ number_1 +" & "+number_2+" is : "+result;
+				}
+		else if( a=='mul'){
+					var result = number_1 * number_2;
+			document.getElementById("result").innerHTML = "The Multiplication of "+ number_1 +" & "+number_2+" is : "+result;
+				}
+		else if( a=='div'){
+					var result = number_1 / number_2;
+			document.getElementById("result").innerHTML = "The Division of "+ number_1 +" & "+number_2+" is : "+result;
+				}
+		else{
+					var result = number_1 % number_2;
+			document.getElementById("result").innerHTML = "The Modulus of "+ number_1 +" & "+number_2+" is : "+result;
+				}
+		}
+		</script>
+	</body>
+</html>
+
+<!--========================================================================================================= -->
+<!-- Here we can also use Switch case IN-PLACE of If Else Condition -->
